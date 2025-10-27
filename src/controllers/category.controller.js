@@ -4,8 +4,11 @@ const catchAsync = require("../utils/catchAsync");
 const pick = require("../utils/pick");
 
 const createCategory = async (req, res) => {
+  const userId = req.user._id;
+  console.log("user id " , userId);
+  
   try {
-    const category = await categoryService.createCategoryIntoDB(req.body);
+    const category = await categoryService.createCategoryIntoDB(req.body , userId);
     res.status(201).json(category);
   } catch (err) {
     res.status(err.statusCode || 500).json({ message: err.message });

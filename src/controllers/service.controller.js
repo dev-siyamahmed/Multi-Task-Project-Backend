@@ -5,7 +5,9 @@ const pick = require("../utils/pick");
 
 // CREATE
 const createService = catchAsync(async (req, res) => {
-  const service = await serviceService.createServiceIntoDB(req.body);
+  const userId = req.user._id;
+  console.log("user id ", userId);
+  const service = await serviceService.createServiceIntoDB(req.body, userId);
   res.status(201).json({
     success: true,
     message: "Service created successfully",

@@ -6,7 +6,7 @@ const {SubCategory } = require("../models");
 const Service = require("../models/service.model");
 
 // CREATE
-const createServiceIntoDB = async (serviceBody) => {
+const createServiceIntoDB = async (serviceBody , userId) => {
   const { subCategoryId, name } = serviceBody;
 
   // Check SubCategory
@@ -20,20 +20,20 @@ const createServiceIntoDB = async (serviceBody) => {
   const exist = await Service.findOne({ name, subCategoryId });
   if (exist) throw new ApiError(httpStatus.BAD_REQUEST, "Service already exists");
 
-  const service = await Service.create(serviceBody);
+  const service = await Service.create({ ...serviceBody, createdBy: userId });
   return service;
 };
 
 // GET ALL
 const getAllServicesFromDB = async (filter = {}, options = {}) => {
-    // if (!options.populate) options.populate = "subCategoryId createdBy";
   const services = await Service.paginate(filter, options);
   return services;
 };
 
 // GET BY ID
 const getServiceByIdFromDB = async (id) => {
-  // const service = await Service.findById(id).populate("subCategoryId createdBy");
+  const service = await Service.findById(id)
+    // .populate("subCategoryId createdBy");
   if (!service) throw new ApiError(httpStatus.NOT_FOUND, "Service not found");
   return service;
 };

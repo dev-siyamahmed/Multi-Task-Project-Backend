@@ -4,11 +4,11 @@ const ApiError = require("../utils/ApiError");
 const Service = require("../models/service.model");
 
 // Create Category
-const createCategoryIntoDB = async (categoryBody) => {
+const createCategoryIntoDB = async (categoryBody, userId) => {
   const exist = await Category.findOne({ name: categoryBody.name });
   if (exist) throw new ApiError(httpStatus.BAD_REQUEST, "Category already exists");
 
-  const category = await Category.create(categoryBody);
+  const category = await Category.create({ ...categoryBody, createdBy: userId });
   return category;
 };
 

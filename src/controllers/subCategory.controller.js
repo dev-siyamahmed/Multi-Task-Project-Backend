@@ -5,7 +5,9 @@ const pick = require("../utils/pick");
 
 // CREATE
 const createSubCategory = catchAsync(async (req, res) => {
-  const subCategory = await subCategoryService.createSubCategoryIntoDB(req.body);
+  const userId = req.user._id;
+  console.log("user id ", userId);
+  const subCategory = await subCategoryService.createSubCategoryIntoDB(req.body, userId);
   res.status(201).json({
     success: true,
     message: "SubCategory created successfully",

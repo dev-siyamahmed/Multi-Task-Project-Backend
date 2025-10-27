@@ -3,7 +3,7 @@ const ApiError = require("../utils/ApiError");
 const { SubCategory, Category } = require("../models");
 
 // CREATE
-const createSubCategoryIntoDB = async (subCategoryBody) => {
+const createSubCategoryIntoDB = async (subCategoryBody, userId) => {
   const { categoryId, name } = subCategoryBody;
 
   // Check if Category exists
@@ -14,7 +14,7 @@ const createSubCategoryIntoDB = async (subCategoryBody) => {
   const exist = await SubCategory.findOne({ name });
   if (exist) throw new ApiError(httpStatus.BAD_REQUEST, "SubCategory already exists");
 
-  const subCategory = await SubCategory.create(subCategoryBody);
+  const subCategory = await SubCategory.create({ ...subCategoryBody, createdBy: userId });
   return subCategory;
 };
 
@@ -26,7 +26,7 @@ const getAllSubCategoriesFromDB = async (filter = {}, options = {}) => {
 
 // GET BY ID
 const getSubCategoryByIdFromDB = async (id) => {
-  const subCategory = await SubCategory.findById(id).populate("categoryId");
+  const subCategory = await SubCategory.findById(id).populate("categoryId createdBy");
   if (!subCategory) throw new ApiError(httpStatus.NOT_FOUND, "SubCategory not found");
   return subCategory;
 };
