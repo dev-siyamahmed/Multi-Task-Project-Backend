@@ -1,0 +1,14 @@
+module.exports.authService = require('./auth.service');
+module.exports.emailService = require('./email.service');
+module.exports.tokenService = require('./token.service');
+module.exports.userService = require('./user.service');
+module.exports.subcriptionService = require('./subcription.service')
+module.exports.mySubcriptionService = require('./mySubcription.service')
+module.exports.myMatchService = require('./myMatch.service')
+module.exports.blcokUserService = require('./blockUser.service')
+module.exports.notInterestedService = require('./notInterested.service')
+module.exports.shortListedProfileService = require('./shortListedProfile.service')
+module.exports.paymentService = require('./payment.service')
+module.exports.categoryService = require('./category.service')
+module.exports.subCategoryService = require('./subCategory.service')
+module.exports.serviceService = require('./service.service')
