@@ -1856,11 +1856,21 @@
 						{
 							"name": "Ragistation",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"firstName\": \"Md. Shadat\",\r\n    \"lastName\": \"Hossain\",\r\n    \"email\": \"shadathossan3500@gmail.com\",\r\n    \"password\": \"1qazxsw2\",\r\n    \"role\": \"user\"\r\n}",
+									"raw": "{\r\n    \"firstName\": \"Siyam\",\r\n    \"lastName\": \"Ahmed\",\r\n    \"fullName\": \"Siyam Ahmed\",\r\n    \"email\": \"dev1.siyamahmed1@gemil.com\",\r\n    \"password\": \"Siyam123\",\r\n    \"role\": \"user\",\r\n    \"familyStatus\": \"Middle Class\",\r\n    \"familyValues\": \"Traditional\",\r\n    \"familyType\": \"Nuclear\",\r\n    \"dataOfBirth\": \"1999-05-12\",\r\n    \"familyIncome\": 60000,\r\n    \"fatherOccupation\": \"Businessman\",\r\n    \"motherOccupation\": \"Housewife\",\r\n    \"brother\": \"1\",\r\n    \"sister\": \"1\",\r\n    \"gothra\": \"Kashyap\",\r\n    \"habits\": \"Reading, Traveling\",\r\n    \"gender\": \"male\",\r\n    \"dob\": \"1999-05-12\",\r\n    \"height\": \"5ft 8in\",\r\n    \"country\": \"Bangladesh\",\r\n    \"city\": \"Dhaka\",\r\n    \"residentialStatus\": \"own\",\r\n    \"education\": \"BSc in Computer Science\",\r\n    \"workExperience\": \"2 years\",\r\n    \"occupation\": \"Software Engineer\",\r\n    \"income\": 80000,\r\n    \"maritalStatus\": \"single\",\r\n    \"motherTongue\": \"Bangla\",\r\n    \"religion\": \"Islam\",\r\n    \"sect\": \"Sunni\",\r\n    \"jammat\": \"Tablighi\",\r\n    \"caste\": \"Sheikh\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1868,10 +1878,15 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/auth/register",
+									"raw": "http://192.168.102.24:3000/api/v1/auth/register",
+									"protocol": "http",
 									"host": [
-										"{{url}}"
+										"192",
+										"168",
+										"102",
+										"24"
 									],
+									"port": "3000",
 									"path": [
 										"api",
 										"v1",
@@ -2145,6 +2160,190 @@
 						},
 						{
 							"name": "Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Parse the JSON response body\r",
+											"let response = pm.response.json();\r",
+											"\r",
+											"// Check if the response code is 200 (Login Successful)\r",
+											"if (response.code === 200) {\r",
+											"    // Extract the access token\r",
+											"    let accessToken = response.data.attributes.tokens.access.token;\r",
+											"    \r",
+											"    // Set the access token in a global variable\r",
+											"    pm.globals.set(\"accessToken\", accessToken);\r",
+											"    \r",
+											"    console.log(\"Access token set in global variable: userAccessToken\");\r",
+											"} else {\r",
+											"    console.log(\"Login failed: \" + response.message);\r",
+											"}\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"shadathossan3500@gmail.com\",\r\n    \"password\": \"1qazxsw2\",\r\n    \"fcmToken\": \"The firebase FCM token\" // // onlly uee for push notification / mobile focus *\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/auth/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"shadathossan3500@gmail.com\",\r\n    \"password\": \"1qazxsw2\",\r\n    \"fcmToken\": \"The firebase FCM token\" // // onlly uee for push notification / mobile focus *\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/api/v1/auth/login",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"auth",
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Security-Policy",
+											"value": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+										},
+										{
+											"key": "Cross-Origin-Opener-Policy",
+											"value": "same-origin"
+										},
+										{
+											"key": "Cross-Origin-Resource-Policy",
+											"value": "same-origin"
+										},
+										{
+											"key": "Origin-Agent-Cluster",
+											"value": "?1"
+										},
+										{
+											"key": "Referrer-Policy",
+											"value": "no-referrer"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "X-DNS-Prefetch-Control",
+											"value": "off"
+										},
+										{
+											"key": "X-Download-Options",
+											"value": "noopen"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "X-Permitted-Cross-Domain-Policies",
+											"value": "none"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "1014"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3f6-H96aeXQd4i7LPbkvF5oVxkzloXM\""
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 16 Feb 2025 04:25:18 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"code\": 200,\n    \"message\": \"Login Successful\",\n    \"data\": {\n        \"attributes\": {\n            \"user\": {\n                \"firstName\": \"Md. Shadat\",\n                \"lastName\": \"Hossain\",\n                \"fullName\": \"Md. Shadat Hossain\",\n                \"email\": \"shadathossan3500@gmail.com\",\n                \"image\": \"/uploads/users/user.png\",\n                \"role\": \"user\",\n                \"callingCode\": null,\n                \"phoneNumber\": null,\n                \"nidNumber\": null,\n                \"isNIDVerified\": null,\n                \"dataOfBirth\": null,\n                \"address\": null,\n                \"oneTimeCode\": null,\n                \"isProfileCompleted\": false,\n                \"createdAt\": \"2025-02-16T04:16:58.879Z\",\n                \"id\": \"67b166ba89ff5ba8358f3f07\"\n            },\n            \"tokens\": {\n                \"access\": {\n                    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2N2IxNjZiYTg5ZmY1YmE4MzU4ZjNmMDciLCJpYXQiOjE3Mzk2Nzk5MTgsImV4cCI6MTc0MzIxOTU5ODkxMiwidHlwZSI6ImFjY2VzcyJ9.P_SNm_ml5_pQq-wTKxxaoqLXwUJcEk31JlSRCv_H610\",\n                    \"expires\": \"2025-03-09T00:25:18.994Z\"\n                },\n                \"refresh\": {\n                    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyMTA3LTA0LTA4VDA0OjI1OjE4Ljk5NVoiLCJpYXQiOjE3Mzk2Nzk5MTgsImV4cCI6MTczOTY3OTkxOCwiYWN0aXZpdHkiOiI2N2IxNjZiYTg5ZmY1YmE4MzU4ZjNmMDcifQ.7Q9XnI_udHwjy6H3vnXNRMzOXuwD-3IC2GoD5bn4BwQ\",\n                    \"expires\": \"2107-04-08T04:25:18.995Z\"\n                }\n            }\n        }\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Admin Login",
 							"event": [
 								{
 									"listen": "test",
@@ -4342,6 +4541,172 @@
 										"service",
 										"delete",
 										"68ff00bb020fac1f996914ab"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Order",
+					"item": [
+						{
+							"name": "List",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{task}}/api/v1/order/list",
+									"host": [
+										"{{task}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"order",
+										"list"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Employe",
+			"item": [
+				{
+					"name": "Order",
+					"item": [
+						{
+							"name": "create",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    //   \"categoryId\": \"68ff08db47548eb00c4764b0\", \r\n    //   \"subCategoryId\": \"68ff090a47548eb00c4764b9\",\r\n    \"serviceId\": \"68ff093047548eb00c4764c4\",\r\n    \"quantity\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{task}}/api/v1/order/create",
+									"host": [
+										"{{task}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"order",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{task}}/api/v1/order/list",
+									"host": [
+										"{{task}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"order",
+										"list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Details",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{task}}/api/v1/order/details",
+									"host": [
+										"{{task}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"order",
+										"details"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{task}}/api/v1/order/update/6900ec0bf975962a4ae4fc5c",
+									"host": [
+										"{{task}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"order",
+										"update",
+										"6900ec0bf975962a4ae4fc5c"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{task}}/api/v1/order/update/6900ebedf975962a4ae4fc56",
+									"host": [
+										"{{task}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"order",
+										"update",
+										"6900ebedf975962a4ae4fc56"
 									]
 								}
 							},

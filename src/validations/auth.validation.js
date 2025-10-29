@@ -1,36 +1,7 @@
 const Joi = require("joi");
 const { password } = require("./custom.validation");
 
-const register = {
-  body: Joi.object().keys({
-  
-firstName: Joi.string().allow(null, ''),
-    lastName: Joi.string().allow(null, ''),
-    fullName: Joi.string().trim().allow(null, ''),
-    email: Joi.string().email().required(),
-    password: Joi.string().required().custom(password),
-    role: Joi.string().valid("user", "admin"),
-    callingCode: Joi.string().allow(null, ''),
-    phoneNumber: Joi.number().allow(null),
 
-    gender: Joi.string().required(),
-    height: Joi.string().required(),
-    country: Joi.string().required(),
-    city: Joi.string().required(),
-    residentialStatus: Joi.string().allow(null, ''),
-    education: Joi.string().required(),
-    workExperience: Joi.string().required(),
-    occupation: Joi.string().required(),
-    income: Joi.object().allow(null),
-    maritalStatus: Joi.string().required(),
-    motherTongue: Joi.string().required(),
-    religion: Joi.string().required(),
-    sect: Joi.string().required(),
-    caste: Joi.string().required(),
-    dataOfBirth: Joi.date().allow(null),
-    address: Joi.string().allow(null, ''),
-  }),
-};
 
 const login = {
   body: Joi.object().keys({
@@ -97,7 +68,6 @@ const verifyOTP = {
   }),
 }
 module.exports = {
-  register,
   login,
   logout,
   refreshTokens,

@@ -10,3 +10,4 @@ module.exports.paymentController = require('./payment.controller')
 module.exports.categoryController = require('./category.controller')
 module.exports.subCategoryController = require('./subCategory.controller')
 module.exports.serviceController = require('./service.controller');
+module.exports.orderController = require('./order.controller');

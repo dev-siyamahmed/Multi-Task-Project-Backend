@@ -20,7 +20,8 @@ const createSubCategoryIntoDB = async (subCategoryBody, userId) => {
 
 // GET ALL (with pagination)
 const getAllSubCategoriesFromDB = async (filter = {}, options = {}) => {
-  const subCategories = await SubCategory.paginate(filter, options);
+  const query = { isDeleted: false, ...filter };
+  const subCategories = await SubCategory.paginate(query, options);
   return subCategories;
 };
 

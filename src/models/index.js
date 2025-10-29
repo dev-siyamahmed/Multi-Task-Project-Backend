@@ -17,3 +17,4 @@ module.exports.PrivacyPolicy = require('./privacyPolicy.model');
 module.exports.Support = require('./support.model');
 module.exports.Category = require('./category.model');
 module.exports.SubCategory = require('./subCategory.model');
+module.exports.Order = require('./order.model');

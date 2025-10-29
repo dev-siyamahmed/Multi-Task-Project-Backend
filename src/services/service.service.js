@@ -26,7 +26,8 @@ const createServiceIntoDB = async (serviceBody , userId) => {
 
 // GET ALL
 const getAllServicesFromDB = async (filter = {}, options = {}) => {
-  const services = await Service.paginate(filter, options);
+  const query = { isDeleted: false, ...filter };
+  const services = await Service.paginate(query, options);
   return services;
 };
 

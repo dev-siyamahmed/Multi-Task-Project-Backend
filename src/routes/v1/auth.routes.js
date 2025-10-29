@@ -10,7 +10,7 @@ const uploadUsers = userFileUploadMiddleware(UPLOADS_FOLDER_USERS);
 
 const router = express.Router();
 
-router.post('/register', validate(authValidation.register), authController.register);
+router.post('/register', authController.register);
 router.post('/verify-email', validate(authValidation.verifyEmail), authController.verifyEmail);
 router.post('/login', validate(authValidation.login), authController.login);
 
