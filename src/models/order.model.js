@@ -46,6 +46,14 @@ const orderSchema = new mongoose.Schema(
       enum: ["pending", "confirmed", "cancelled"],
       default: "pending",
     },
+    startDate: {
+      type: Date,
+      default: null,  
+    },
+    endDate: {
+      type: Date,
+      default: null,  
+    },
     isDeleted: {
       type: Boolean,
       default: false,

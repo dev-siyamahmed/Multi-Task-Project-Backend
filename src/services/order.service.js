@@ -7,7 +7,7 @@ const Category = require("../models/category.model");
 
 // CREATE ORDER
 const createOrderIntoDB = async (orderBody, userId) => {
-  const {   serviceId, quantity , redirectUrl , note } = orderBody;
+  const {   serviceId, quantity , redirectUrl , note , startDate , endDate  } = orderBody;
 
   // find the service
   const service = await Service.findById(serviceId);
@@ -32,6 +32,8 @@ const createOrderIntoDB = async (orderBody, userId) => {
     redirectUrl,
     quantity,
     note,
+    startDate,
+    endDate,
     totalPrice
     
   });
