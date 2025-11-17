@@ -14,6 +14,8 @@ const categoryRouter = require("./category.routes");
 const subCategoryRouter = require("./subCategory.routes");
 const serviceRouter = require("./service.routes");
 const orderRouter = require("./order.routes");
+const folderRouter = require("./folder.route");
+const fileRouter = require("./file.route");
 
 
 const router = express.Router();
@@ -70,6 +72,14 @@ const defaultRoutes = [
   {
     path: "/order",
     route: orderRouter,
+  },
+  {
+    path: "/folder",
+    route: folderRouter,
+  },
+  {
+    path: "/file",
+    route: fileRouter,
   },
 ];
 

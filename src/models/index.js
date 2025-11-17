@@ -18,3 +18,5 @@ module.exports.Support = require('./support.model');
 module.exports.Category = require('./category.model');
 module.exports.SubCategory = require('./subCategory.model');
 module.exports.Order = require('./order.model');
+module.exports.Folder = require('./folder.model');
+module.exports.File = require('./file.model');

@@ -11,3 +11,5 @@ module.exports.categoryController = require('./category.controller')
 module.exports.subCategoryController = require('./subCategory.controller')
 module.exports.serviceController = require('./service.controller');
 module.exports.orderController = require('./order.controller');
+module.exports.folderController = require('./folder.controller');
+module.exports.fileController = require('./file.controller');

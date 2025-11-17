@@ -57,8 +57,6 @@ const userSchema = mongoose.Schema(
       type: String,
       enum: roles,
     },
-
-
     oneTimeCode: {
       type: String,
       required: false,
@@ -85,6 +83,21 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    // Total storage allocated to user (in MB)
+    totalStorage: {
+      type: Number,
+      default: 15360, // 15 GB = 15360 MB
+    },
+    // Storage used by user (in MB) - this will increase when files are uploaded
+    usedStorage: {
+      type: Number,
+      default: 0, // Initially, no storage is used
+    },
+    // Available storage remaining (in MB) - calculated field
+    storageSize: {
+      type: Number,
+      default: 15360, // 15 GB = 15360 MB
+    },
   },
   {
     timestamps: true,
@@ -99,6 +112,7 @@ userSchema.statics.isEmailTaken = async function (email, excludeUserId) {
   const user = await this.findOne({ email, _id: { $ne: excludeUserId } })
   return !!user
 }
+
 userSchema.statics.isPhoneNumberTaken = async function (
   phoneNumber,
   excludeUserId
@@ -122,6 +136,10 @@ userSchema.pre('save', async function (next) {
   }
   next()
 })
+
+// Ensure virtuals are included in JSON
+userSchema.set('toJSON', { virtuals: true });
+userSchema.set('toObject', { virtuals: true });
 
 const User = mongoose.model('User', userSchema)
 
