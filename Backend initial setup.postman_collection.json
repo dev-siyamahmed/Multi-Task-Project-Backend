@@ -2204,7 +2204,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"shadathossan3500@gmail.com\",\r\n    \"password\": \"1qazxsw2\",\r\n    \"fcmToken\": \"The firebase FCM token\" // // onlly uee for push notification / mobile focus *\r\n}",
+									"raw": "{\r\n    \"email\": \"employee2@gmail.com\",\r\n    \"password\": \"Siyam123\",\r\n    \"fcmToken\": \"The firebase FCM token\" // // onlly uee for push notification / mobile focus *\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2212,9 +2212,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/api/v1/auth/login",
+									"raw": "{{task}}/api/v1/auth/login",
 									"host": [
-										"{{url}}"
+										"{{task}}"
 									],
 									"path": [
 										"api",
@@ -4570,13 +4570,126 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Details",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTAwZjM5MDBmZDEzOGU2N2FhMTkwMDciLCJpYXQiOjE3NjE3MzM2NDcsImV4cCI6MTc2NTI5NTM4MDg3MSwidHlwZSI6ImFjY2VzcyJ9.FwSYiDrSCwkfYfOn9Aszmo_9h6qKVR0UgIjnt5f9X74",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{task}}/api/v1/order/details/6900eb7d74e6bf6aab9904ce",
+									"host": [
+										"{{task}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"order",
+										"details",
+										"6900eb7d74e6bf6aab9904ce"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTAwZjM5MDBmZDEzOGU2N2FhMTkwMDciLCJpYXQiOjE3NjE3MzM2NDcsImV4cCI6MTc2NTI5NTM4MDg3MSwidHlwZSI6ImFjY2VzcyJ9.FwSYiDrSCwkfYfOn9Aszmo_9h6qKVR0UgIjnt5f9X74",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": \"confirmed\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{task}}/api/v1/order/admin/update/6900fb310459c3745ad72ee0",
+									"host": [
+										"{{task}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"order",
+										"admin",
+										"update",
+										"6900fb310459c3745ad72ee0"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTAwZjM5MDBmZDEzOGU2N2FhMTkwMDciLCJpYXQiOjE3NjE3MzM2NDcsImV4cCI6MTc2NTI5NTM4MDg3MSwidHlwZSI6ImFjY2VzcyJ9.FwSYiDrSCwkfYfOn9Aszmo_9h6qKVR0UgIjnt5f9X74",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": \"confirmed\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{task}}/api/v1/order/admin/delete/6900fb310459c3745ad72ee0",
+									"host": [
+										"{{task}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"order",
+										"admin",
+										"delete",
+										"6900fb310459c3745ad72ee0"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
 			]
 		},
 		{
-			"name": "Employe",
+			"name": "Client",
 			"item": [
 				{
 					"name": "Order",
@@ -4707,6 +4820,211 @@
 										"order",
 										"update",
 										"6900ebedf975962a4ae4fc56"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "File Management",
+			"item": [
+				{
+					"name": "Folder",
+					"item": [
+						{
+							"name": "Create",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Second Folder\",\r\n    \"parent\": null\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{task}}/api/v1/folder/create",
+									"host": [
+										"{{task}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"folder",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{task}}/api/v1/folder/create",
+									"host": [
+										"{{task}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"folder",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Details",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{task}}/api/v1/folder/details/6918536ac8ce51842ac2e5ff",
+									"host": [
+										"{{task}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"folder",
+										"details",
+										"6918536ac8ce51842ac2e5ff"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "File",
+					"item": [
+						{
+							"name": "Create",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "folderId",
+											"value": "69180f536a091fa7a73f74ab",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/FAS/Downloads/bar-1.jpeg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{task}}/api/v1/file/create",
+									"host": [
+										"{{task}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"file",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{accessToken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "folderId",
+											"value": "69180f536a091fa7a73f74ab",
+											"type": "text"
+										},
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/FAS/Downloads/bar-1.jpeg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{task}}/api/v1/file/delete",
+									"host": [
+										"{{task}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"file",
+										"delete"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Stroge uses",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{task}}/api/v1/file/storage-usage",
+									"host": [
+										"{{task}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"file",
+										"storage-usage"
 									]
 								}
 							},
